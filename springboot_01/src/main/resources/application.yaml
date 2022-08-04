@@ -1,0 +1,11 @@
+# 经过测试，:和.的配置，都能被value注解读取到其中的值
+# yml文件的特点就是树状层级结构展示配置项，故推荐多用:
+spring:
+  jdbc:
+    datasource:
+      driverClassName: yaml
+      url: jdbc:mysql:///springboot_01
+      username: root
+      password: root
+
+server.port: 801
