@@ -1,22 +1,16 @@
-package com.atguigu.properties;
+package mb.springboot.autoconfig;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 /**
  * @Author mabo
- * @Date 2022/8/4 11:13
+ * @Date 2022/8/5 19:44
  */
-
-/*
-    将配置属性批量注入到bean对象有两种解决方案
-        1、 @Component + @ConfigurationProperties(prefix="")，不用@EnableConfigurationProperties
-        2、 @EnableConfigurationProperties(被@ConfigurationProperties标注的类名.class) + @ConfigurationProperties(prefix="")，不用@Component
- */
-/*@Component
-@ConfigurationProperties(prefix = "spring.jdbc.datasource")*/
-@ConfigurationProperties(prefix = "spring.jdbc.datasource")
+@Component
+@ConfigurationProperties(prefix = "spring.jdbc.database")
 public class DataSourceProperties {
-    private String driverClassName;
+    private String driverClassName ;
     private String url;
     private String username;
     private String password;

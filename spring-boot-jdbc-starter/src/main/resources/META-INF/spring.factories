@@ -1,0 +1,2 @@
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=mb.springboot.autoconfig.DataSourceAutoConfiguration
