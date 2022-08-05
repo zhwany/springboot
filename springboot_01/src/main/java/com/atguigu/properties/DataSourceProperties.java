@@ -1,21 +1,24 @@
 package com.atguigu.properties;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * @Author mabo
  * @Date 2022/8/4 11:13
  */
-@Component
+
+/*
+    将配置属性批量注入到bean对象有两种解决方案
+        1、 @Component + @ConfigurationProperties(prefix="")，不用@EnableConfigurationProperties
+        2、 @EnableConfigurationProperties(被@ConfigurationProperties标注的类名.class) + @ConfigurationProperties(prefix="")，不用@Component
+ */
+/*@Component
+@ConfigurationProperties(prefix = "spring.jdbc.datasource")*/
+@ConfigurationProperties(prefix = "spring.jdbc.datasource")
 public class DataSourceProperties {
-    @Value("${spring.jdbc.datasource.driverClassName}")
     private String driverClassName;
-    @Value("${spring.jdbc.datasource.url}")
     private String url;
-    @Value("${spring.jdbc.datasource.username}")
     private String username;
-    @Value("${spring.jdbc.datasource.password}")
     private String password;
 
     @Override

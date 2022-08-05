@@ -1,38 +1,32 @@
 package com.atguigu.controller;
 
 import com.atguigu.properties.DataSourceProperties;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
+import javax.annotation.Resource;
 
 /**
  * @Author mabo
  * @Date 2022/8/3 13:25
  */
 @RestController
+/*
+    因为在HelloController中声明了DataSourceProperties对象，若DataSourceProperties类上还没有@Component注解
+    则@EnableConfigurationProperties(DataSourceProperties.class)必须标注在HelloController类上
+    不加注解出现以下错误
+        A component required a bean of type 'com.atguigu.properties.DataSourceProperties' that could not be found.
+        Consider defining a bean of type 'com.atguigu.properties.DataSourceProperties' in your configuration.
+*/
+@EnableConfigurationProperties(DataSourceProperties.class)
 public class HelloController {
-    @RequestMapping("/index")
-    public String sayHello() {
-        Map<String, String> map = new HashMap<>();
-        map.put("hello", "world");
-        map.put("hello1", "springboot");
-        return map.toString();
-    }
-
-    @Autowired
+//    @Autowired
+    @Resource
     private DataSourceProperties dataSourceProperties;
 
     @RequestMapping("/hello")
-    public String sayHello2() {
+    public String sayHello() {
         return dataSourceProperties.toString();
-    }
-
-    @RequestMapping("/hello1")
-    public DataSourceProperties sayHello3() {
-        return dataSourceProperties;
     }
 }
